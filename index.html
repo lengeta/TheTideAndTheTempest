@@ -33,6 +33,13 @@
       .tab button:hover {
         background-color: #ddd;
       }
+      div.sticky {
+        position: sticky;
+        top: 0;
+        background-color: yellow;
+        padding: 50px;
+        font-size: 20px;
+      }
       /* Create an active/current tablink class */
       .tab button.active {
         background-color: #ccc;
@@ -83,16 +90,17 @@
 
   <body>
 
-    <div style="background-color:black;">
-      <img class="w3-bar-item" src="https://raw.githubusercontent.com/TheTideAndTheTempest/TheTideAndTheTempest/pre-release/image/runic_tTntT_w_350x135.png">
-    </div>
-
     <!-- Header -->
-    <div class="tab">
-      <button class="tablinks" onclick="openContent(event, 'band')" id="defaultOpen">Band</button>
-      <button class="tablinks" onclick="openContent(event, 'music')">Music</button>
-      <button class="tablinks" onclick="openContent(event, 'shows')">Shows</button>
-      <button class="tablinks" onclick="openContent(event, 'contact')">Contact</button>
+    <div class="sticky">
+      <div style="background-color:black;">
+        <img class="w3-bar-item" src="https://raw.githubusercontent.com/TheTideAndTheTempest/TheTideAndTheTempest/pre-release/image/runic_tTntT_w_350x135.png">
+      </div>
+      <div class="tab">
+        <button class="tablinks" onclick="openContent(event, 'band')" id="defaultOpen">Band</button>
+        <button class="tablinks" onclick="openContent(event, 'music')">Music</button>
+        <button class="tablinks" onclick="openContent(event, 'shows')">Shows</button>
+        <button class="tablinks" onclick="openContent(event, 'contact')">Contact</button>
+      </div>
     </div>
 
     <!-- Content -->
