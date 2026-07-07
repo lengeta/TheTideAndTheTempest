@@ -1,6 +1,8 @@
 /* styles.css */
 body {
-  font-family: Arial;
+  font-family: IrisUPC, Arial, Helvetica, sans-serif;
+  color: #adadad;
+  background-color: black;
 }
 
 .tab {
