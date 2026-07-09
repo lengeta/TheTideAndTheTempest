@@ -5,6 +5,11 @@ body {
   background-color: black;
 }
 
+div.sticky {
+  position: sticky;
+  top: 0;
+}
+
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
