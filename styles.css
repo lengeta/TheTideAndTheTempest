@@ -8,6 +8,7 @@ body {
 div.sticky {
   position: sticky;
   top: 0;
+  background: black;
 }
 
 .tab {
