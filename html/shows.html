@@ -20,6 +20,20 @@
   data-remind-me="off"
   style="display: none;">Upcoming Shows</a>
 <script src='//widget-app.songkick.com/injector/10409330'></script>
+<script>
+  function loadScript(src, callback) {
+    let script = document.createElement('script');
+    script.src = src;
+    script.onload = () => callback(script);
+    script.onerror = () => callback(new Error(`Script load error for ${src}`));
+    document.head.append(script);
+  }
+
+  loadScript('//widget-app.songkick.com/injector/10409330', script => {
+    alert(`Cool, the script ${script.src} is loaded`);
+    alert(test()); // function declared in the loaded script
+  });
+</script>
 
 <p>
   If our widget isn't working, check for our shows over on Songkick directly: <a href="https://www.songkick.com/artists/10409330-tide-and-the-tempest">www.songkick.com/artists/10409330-tide-and-the-tempest</a>.
