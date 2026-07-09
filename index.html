@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="db.js"></script>
+    <script src="includeHtml.js"></script>
+    <script src="openContent.js"></script>
     <script src="https://kit.fontawesome.com/b9eed72134.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
+  <!--
   <script>
   function includeHTML() {
     var z, i, elmnt, file, xhttp;
@@ -38,6 +41,7 @@
     }
   };
   </script>
+  -->
 
   <body>
 
@@ -69,27 +73,30 @@
     <!-- Footer -->
     <div w3-include-html="footer.html"></div>
 
-    <script>
-      includeHTML();
+    <!--
+    <script src="includeHtml.js">
+      // includeHTML();
     </script>
-
-    <script>
-      function openContent(evt, conentName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(conentName).style.display = "block";
-        evt.currentTarget.className += " active";
-      }
-
-      document.getElementById("defaultOpen").click();
+    -->
+    <!--
+    <script src="openContent.js">
+      // function openContent(evt, conentName) {
+      //   var i, tabcontent, tablinks;
+      //   tabcontent = document.getElementsByClassName("tabcontent");
+      //   for (i = 0; i < tabcontent.length; i++) {
+      //     tabcontent[i].style.display = "none";
+      //   }
+      //   tablinks = document.getElementsByClassName("tablinks");
+      //   for (i = 0; i < tablinks.length; i++) {
+      //     tablinks[i].className = tablinks[i].className.replace(" active", "");
+      //   }
+      //   document.getElementById(conentName).style.display = "block";
+      //   evt.currentTarget.className += " active";
+      // }
+      //
+      // document.getElementById("defaultOpen").click();
     </script>
+    -->
     
   </body>
 </html>
