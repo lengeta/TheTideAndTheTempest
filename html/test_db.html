@@ -1,0 +1,49 @@
+<p>Table, get DB to look like this:</p>
+<div class="w3-responsive">
+  <table class="w3-table-all w3-hoverable">
+    <tr>
+      <th>Date</th>
+      <th>Venue</th>
+      <th>Playing</th>
+      <th>Tickets</th>
+      <th>Doors</th>
+      <th>Starts</th>
+    </tr>
+    <tr>
+      <td>2026-08-26</td>
+      <td><b><a href="https://aceshighsaloon.com/">Aces High Saloon</a></b><br>1588 S. State Street<br>Salt Lake City, UT 84115</td>
+      <td><b>The Tide and The Tempest</b><br>Johnny Tightlips<br><i>?-- unknown special guest --?</i></td>
+      <td>$10 at the door.</td>
+      <td>7:00 PM</td>
+      <td>8:00 PM</td>
+    </tr>
+  </table>
+</div>
+
+<p>From DB:</p>
+<div class="w3-responsive">
+  <table class="w3-table-all w3-hoverable">
+    <tr>
+      <th>Date</th>
+      <th>Venue</th>
+      <th>Playing</th>
+      <th>Tickets</th>
+      <th>Doors</th>
+      <th>Starts</th>
+    </tr>
+    <tr>
+      <td>{{ Show.Date }}</td>
+      <td><b><a href="{{ Show.Venue.Link }}">{{ Show.Venue.Name }}</a></b><br>{{ Show.Venue.Address }}<br>{{ Show.Venue.City }}, {{ Show.Venue.State }} {{ Show.Venue.Zip }}</td>
+      <td><b>The Tide and The Tempest</b><br>Johnny Tightlips<br><i>?-- unknown special guest --?</i></td>
+      <td>{{ Show.Tickets }}</td>
+      <td>{{ Show.DoorTime }}</td>
+      <td>{{ Show.StartTime }}</td>
+    </tr>
+  </table>
+</div>
+
+<p>From DB:</p>
+<div class="w3-responsive">
+  <div id="data-container"></div>
+  <script src="db.js"></script>
+</div>

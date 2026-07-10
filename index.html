@@ -1,10 +1,119 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>The Tide and The Tempest</title>
+    <title>The Tide & The Tempest</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/b9eed72134.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
+
+  <script>
+    function includeHTML() {
+      var z, i, elmnt, file, xhttp;
+      z = document.getElementsByTagName("*");
+      for (i = 0; i < z.length; i++) {
+        elmnt = z[i];
+        file = elmnt.getAttribute("w3-include-html");
+        if (file) {
+          xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+             if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+              if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+              elmnt.removeAttribute("w3-include-html");
+              includeHTML();
+            }
+          }      
+          xhttp.open("GET", file, true);
+          xhttp.send();
+          return;
+        }
+      }
+    };
+  </script>
+
   <body>
-    <h1>The Tide and The Tempest</h1>
-    <p>This page is currently under construction.</p>
+
+    <!-- Header - Moved out of header.html so sticky and defaultOpen work. -->
+    <!-- <div w3-include-html="html/header.html"></div> -->
+    <div class="sticky">
+      <!-- Logo -->
+      <div style="background-color:black;">
+        <img class="w3-bar-item" src="image/tTatT_350x29.png" alt="The Tide & The Tempest" style="width:350px;height:29px;margin:5px 5px;">
+      </div>
+      <!-- Navigation bar -->
+      <div class="tab">
+        <script src="includeHtml.js"></script>
+        <button class="tablinks" onclick="openContent(event, 'band')" id="defaultOpen">Band</button>
+        <button class="tablinks" onclick="openContent(event, 'music')">Music</button>
+        <button class="tablinks" onclick="openContent(event, 'shows')">Shows</button>
+        <button class="tablinks" onclick="openContent(event, 'contact')">Contact</button>
+      </div>
+    </div>
+    
+    <!-- Content -->
+    <div id="band" class="tabcontent">
+      <div w3-include-html="html/band.html"></div>
+    </div>
+    <div id="music" class="tabcontent">
+      <div w3-include-html="html/music.html"></div>
+    </div>
+    <div id="shows" class="tabcontent">
+      <!-- Moved out of html/shows.html so the Songkick script works. -->
+      <!-- <div w3-include-html="html/shows.html"></div> -->
+      <a
+        href="https://www.songkick.com/artists/10409330-tide-and-the-tempest"
+        class="songkick-widget"
+        data-theme="dark"
+        data-track-button="off"
+        data-detect-style="off"
+        data-background-color="rgb(0,0,0,1)"
+        data-font-color="rgb(255,255,255,1)"
+        data-button-bg-color="rgb(255,255,255,1)"
+        data-button-text-color="rgb(0,0,0,1)"
+        data-locale="en"
+        data-other-artists="on"
+        data-share-button="off"
+        data-country-filter="off"
+        data-rsvp="off"
+        data-request-show="off"
+        data-past-events="off"
+        data-past-events-offtour="off"
+        data-remind-me="off"
+        style="display: none;">Upcoming Shows</a>
+      <script src='//widget-app.songkick.com/injector/10409330'></script>
+    </div>
+    <div id="contact" class="tabcontent">
+      <div w3-include-html="html/contact.html"></div>
+    </div>
+
+    <!-- Footer -->
+    <div w3-include-html="html/footer.html"></div>
+
+    <script>includeHTML();</script>
+    <script>
+      function openContent(evt, conentName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(conentName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+      document.getElementById("defaultOpen").click();
+    </script>
+    
   </body>
 </html>
