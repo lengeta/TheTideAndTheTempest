@@ -45,8 +45,6 @@ a:active {
 .bandsintown:hover { background-image: url('media/bandsintown-gray.svg'); }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;  /* Not using IrisUPC, it looks bad. */
-  color: var(--tnt-white-color);
   background-color: var(--tnt-darkteal-color); /* Fallback color */
   /* Pattern from https://css-pattern.com/3d-wavy/ */
   --s: 50px;
@@ -60,6 +58,10 @@ body {
     radial-gradient(100% 100% at 0 100%,#0000, #0008 4%,var(--_g),var(--c1) 96%)
     var(--c1);
   background-size: var(--s) var(--s);
+  color: var(--tnt-white-color);
+  font-family: Arial, Helvetica, sans-serif;  /* Not using IrisUPC, it looks bad. */
+  margin: auto;
+  width: 100%;
 }
 
 .box-shadow { box-shadow: 2px 2px 5px black; }
@@ -82,6 +84,19 @@ button.active {
 }
 
 .center-text { text-align: center; }
+
+content {
+  display: grid;
+  place-content: center;
+}
+content.div {
+  display: flex;
+  justify-content: center;
+}
+content.div.div {
+  display: flex;
+  justify-content: center;
+}
 
 footer {
   display: flow-root;
@@ -106,8 +121,6 @@ footer {
   width: 100%;
 }
 .footer-content {
-  display: inline-block;
-  float: left;
   padding: 12px;
   text-align: center;
 }
@@ -146,6 +159,7 @@ header {
     radial-gradient(50% 50%,var(--_g)) calc(var(--s)/2) calc(var(--s)/2)
     var(--c1);
   background-size: var(--s) var(--s);
+  text-align: center;
 }
 header.sticky {
   position: sticky;
@@ -153,10 +167,13 @@ header.sticky {
   z-index: 10;
 }
 div.header-buttons {
-  /* Put the buttons in the right place with the logo. */
-  position: absolute;
-  top: 50px;
-  left: 80px;
+  position: relative;
+  top: 5px;
+  left: -30px;
+}
+div.header-logo {
+  margin: auto;
+  width: 400px;
 }
 div.header-text {
   color: var(--tnt-teal-color);
@@ -166,10 +183,9 @@ div.header-text {
                1px -1px 0 var(--tnt-darkteal-color),
                -1px 1px 0 var(--tnt-darkteal-color),
                1px 1px 0 var(--tnt-darkteal-color);
-  /* Put text in the right place with the logo. */
-  position: absolute;
+  position: relative;
   top: 10px;
-  left: 92px;
+  left: -28px;
 }
 div.header-text b {
   color: var(--tnt-white-color);
@@ -179,8 +195,9 @@ div.header-text b {
 
 li {
   background-color: black;
-  max-width: 600px;
+  max-width: 400px;
   opacity: 65%;
+  text-align: left;
 }
 
 p {
@@ -313,7 +330,7 @@ ul li:last-child {
   padding: 0 20px 20px 20px;
 }
 /* Clear floats */
-.container::after, .row::after {
+.container::after, .header-logo::after, .row::after {
   content: "";
   clear: both;
   display: table;
