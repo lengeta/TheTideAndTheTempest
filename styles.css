@@ -1,112 +1,314 @@
 /* styles.css */
-body {
-  font-family: Arial, Helvetica, sans-serif;  /* Not using IrisUPC, it looks bad. */
-  color: #ffffff;
-  background-color: #1e2b2d;
+
+:root {
+  --tnt-darkteal-color: #1e2b2d;  /* flyer's background */
+  --tnt-gray-color: #939598;  /* logo's triangle */
+  --tnt-teal-color: #288894;  /* logo's wave */
+  --tnt-white-color: #ffffff;  /* white, logo's foam, text */
 }
 
-div.sticky {
-  position: sticky;
-  top: 0;
-  background: #1e2b2d;
-  z-index: 10;
+@font-face {
+  font-family: 'tnt-myriad';
+  src: url('/media/MYRIADPRO-REGULAR.OTF');
 }
+@keyframes tntFade { from {opacity: 0;} to {opacity: 1;} }
 
 a:link {
-  color: #288894;
+  color: var(--tnt-teal-color);
   background-color: transparent;
   font-weight: bold;
   text-decoration: none;
+  text-shadow: -1px -1px 0 var(--tnt-grey-color),
+               1px -1px 0 var(--tnt-grey-color),
+               -1px 1px 0 var(--tnt-grey-color),
+               1px 1px 0 var(--tnt-grey-color);
 }
-
 a:visited {
-  color: #288894;
+  color: var(--tnt-teal-color);
   background-color: transparent;
   font-weight: bold;
   text-decoration: none;
 }
-
 a:hover {
-  color: #939598;
+  color: var(--tnt-gray-color);
+  background-color: transparent;
+  font-weight: bold;
+  text-decoration: underline;
+}
+a:active {
+  color: var(--tnt-gray-color);
   background-color: transparent;
   font-weight: bold;
   text-decoration: underline;
 }
 
-a:active {
-  color: #939598;
-  background-color: transparent;
-  font-weight: bold;
-  text-decoration: underline;
+.bandsintown {
+  margin: 0 4px;
+  text-decoration: none;
 }
+.bandsintown:hover { background-image: 'media/bandsintown-gray.svg' }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;  /* Not using IrisUPC, it looks bad. */
+  color: var(--tnt-white-color);
+  background-color: var(--tnt-darkteal-color); /* Fallback color */
+  /* Pattern from https://css-pattern.com/3d-wavy/ */
+  --s: 50px;
+  --c1: var(--tnt-darkteal-color);
+  --c2: #2c383a;
+  --_g: 
+     var(--c2) 6%  14%,var(--c1) 16% 24%,var(--c2) 26% 34%,var(--c1) 36% 44%,
+     var(--c2) 46% 54%,var(--c1) 56% 64%,var(--c2) 66% 74%,var(--c1) 76% 84%,var(--c2) 86% 94%;
+  background:
+    radial-gradient(100% 100% at 100% 0,var(--c1) 4%,var(--_g),#0008 96%,#0000),
+    radial-gradient(100% 100% at 0 100%,#0000, #0008 4%,var(--_g),var(--c1) 96%)
+    var(--c1);
+  background-size: var(--s) var(--s);
+}
+
+.box-shadow { box-shadow: 2px 2px 5px black; }
 
 button {
-  border: 1px solid #939598;
+  background-color: var(--tnt-darkteal-color);
+  border: 1px solid var(--tnt-gray-color);
   border-radius: 5px;
-  color: #939598;
-  background-color: #f1f1f1;
+  color: var(--tnt-teal-color);
+  font-family: tnt-myriad, myriad-pro, sans-serif;
 }
-
 button:hover {
-  color: #ffffff;
-  background-color: #939598;
+  color: var(--tnt-white-color);
+  background-color: var(--tnt-gray-color);
 }
-
 button.active {
-  color: #ffffff;
-  background-color: #288894;
+  color: var(--tnt-white-color);
+  background-color: var(--tnt-teal-color);
+  border: 1px solid var(--tnt-gray-color);
 }
 
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
+.center-text { text-align: center; }
 
-.tab button {
-  background-color: inherit;
+footer {
+  display: flow-root;
+  background: black;
+  /* Pattern from https://css-pattern.com/overlapping-circles/ */
+  --s: 50px;
+  --c1: black;
+  --c2: #111111;
+
+  --_g: 
+     var(--c1) 0%  5% ,var(--c2) 6%  15%,var(--c1) 16% 25%,var(--c2) 26% 35%,var(--c1) 36% 45%,
+     var(--c2) 46% 55%,var(--c1) 56% 65%,var(--c2) 66% 75%,var(--c1) 76% 85%,var(--c2) 86% 95%,
+     #0000 96%;
+  background:
+    radial-gradient(50% 50% at 100% 0,var(--_g)),
+    radial-gradient(50% 50% at 0 100%,var(--_g)),
+    radial-gradient(50% 50%,var(--_g)),
+    radial-gradient(50% 50%,var(--_g)) calc(var(--s)/2) calc(var(--s)/2)
+    var(--c1);
+  background-size: var(--s) var(--s);
+  text-align: center;
+  width: 100%;
+}
+.footer-content {
+  display: inline-block;
   float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
+  padding: 12px;
+  text-align: center;
+}
+.footer-text { color: var(--tnt-teal-color); }
+
+h1, h2, h3, h4, h5 {
+  color: white;
+  text-shadow: -1px -1px 0 var(--tnt-darkteal-color),
+               1px -1px 0 var(--tnt-darkteal-color),
+               -1px 1px 0 var(--tnt-darkteal-color),
+               1px 1px 0 var(--tnt-darkteal-color);
 }
 
-.tab button:hover {
-  background-color: #ddd;
+/* Header */
+header {
+  background: var(--tnt-darkteal-color);
+  /* Pattern from https://css-pattern.com/overlapping-circles/ */
+  --s: 50px;
+  --c1: var(--tnt-darkteal-color);
+  --c2: #222222;
+
+  --_g: 
+     var(--c1) 0%  5% ,var(--c2) 6%  15%,var(--c1) 16% 25%,var(--c2) 26% 35%,var(--c1) 36% 45%,
+     var(--c2) 46% 55%,var(--c1) 56% 65%,var(--c2) 66% 75%,var(--c1) 76% 85%,var(--c2) 86% 95%,
+     #0000 96%;
+  background:
+    radial-gradient(50% 50% at 100% 0,var(--_g)),
+    radial-gradient(50% 50% at 0 100%,var(--_g)),
+    radial-gradient(50% 50%,var(--_g)),
+    radial-gradient(50% 50%,var(--_g)) calc(var(--s)/2) calc(var(--s)/2)
+    var(--c1);
+  background-size: var(--s) var(--s);
+}
+header.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+div.header-buttons {
+  /* Put the buttons in the right place with the logo. */
+  position: absolute;
+  top: 50px;
+  left: 80px;
+}
+div.header-text {
+  color: var(--tnt-teal-color);
+  font-family: tnt-myriad, myriad-pro, sans-serif;
+  font-size: 21px;
+  text-shadow: -1px -1px 0 var(--tnt-darkteal-color),
+               1px -1px 0 var(--tnt-darkteal-color),
+               -1px 1px 0 var(--tnt-darkteal-color),
+               1px 1px 0 var(--tnt-darkteal-color);
+  /* Put text in the right place with the logo. */
+  position: absolute;
+  top: 10px;
+  left: 92px;
+}
+div.header-text b {
+  color: var(--tnt-white-color);
+  font-size: 28px;
+  font-weight: normal;
 }
 
-.tab button.active {
-  background-color: #ccc;
+li {
+  background-color: black;
+  max-width: 600px;
+  opacity: 65%;
 }
+
+p {
+  color: white;
+  text-shadow: -1px -1px 0 var(--tnt-darkteal-color),
+               1px -1px 0 var(--tnt-darkteal-color),
+               -1px 1px 0 var(--tnt-darkteal-color),
+               1px 1px 0 var(--tnt-darkteal-color);
+}
+
+.reverbnation { text-decoration: none; }
+.reverbnation:hover { background-image: 'media/reverbnation-gray.svg' }
+
+.songkick { text-decoration: none; }
+.songkick:hover { background-image: 'media/songkick-gray.svg' }
 
 .tabcontent {
+  animation: tntFade 1s;
   display: none;
-  padding: 6px 12px;
-  -webkit-animation: fadeEffect 1s;
-  animation: fadeEffect 1s;
+  padding: 20px 12px 0px;
 }
 
-/* Fade in tabs */
-@-webkit-keyframes fadeEffect {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-@keyframes fadeEffect {
-  from {opacity: 0;}
-  to {opacity: 1;}
+.tablinks {
+  transition-duration: 0.3s;
 }
 
-/* DB */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--tnt-gray-color);
+}
+ul li:last-child {
+  border-bottom: none;
+}
+
+.wavy {
+  /* Pattern from https://css-generators.com/wavy-shapes/ */
+  margin: -10px 0 0 0;
+  mask: 
+    radial-gradient(67.08px at 50% 90px,#000 99%,#0000 101%) calc(50% - 60px) 0/120px 51% repeat-x,
+    radial-gradient(67.08px at 50% -60px,#0000 99%,#000 101%) 50% 30px/120px calc(51% - 30px) repeat-x,
+    radial-gradient(67.08px at 50% calc(100% - 90px),#000 99%,#0000 101%) 50% 100%/120px 51% repeat-x,
+    radial-gradient(67.08px at 50% calc(100% + 60px),#0000 99%,#000 101%) calc(50% - 60px) calc(100% - 30px)/120px calc(51% - 30px) repeat-x;
+  padding: 20px 0 60px 0;
+}
+
+/* Band Slideshow */
+* { box-sizing: border-box; }
+.slideshow {
+  background-color: black;
+  max-width: 1000px; /* Images are 1200x700. */
+  position: relative;
+  margin: auto;
+}
+.slide {
+  animation: tntFade 1.5s;
+  display: none;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover { background-color: rgba(0, 0, 0, 0.8); }
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active-slide, .dot:hover {
+  background-color: #717171;
+}
+
+/* Band Member Cards */
+.column {
+  float: left;
+  width: 400px; /* Images are 400x700. */
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+.card {
+  box-shadow: 2px 2px 5px black;
+  position: relative;
+}
+.card-title {
+  color: var(--tnt-gray-color);
+  font-size: 18.72px;
+}
 .container {
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  padding: 0 20px 20px 20px;
 }
-
-.data-item {
-  margin-bottom: 10px;
+/* Clear floats */
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
 }

@@ -1,7 +1,9 @@
-## The Tide and The Tempest Webpage
+# The Tide & The Tempest - Official Webpage
 
-Basic webpage for the band The Tide and The Tempest.
+Official webpage for the band **_The Tide & The Tempest_**.
 
 Created by Layne Carroll (lengeta@gmail.com).
+Logo and flyer design by Cecilia Lopez.
+Thanks to Temani Afif (https://css-generators.com/) for various CSS shapes and partens.
 
-Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>.
+© 2026 The Tide and The Tempest. All rights reserved.
