@@ -42,11 +42,7 @@ a:active {
   text-decoration: underline;
 }
 
-.bandsintown {
-  margin: 0 4px;
-  text-decoration: none;
-}
-.bandsintown:hover { background-image: 'media/bandsintown-gray.svg' }
+.bandsintown:hover { background-image: url('media/bandsintown-gray.svg'); }
 
 body {
   font-family: Arial, Helvetica, sans-serif;  /* Not using IrisUPC, it looks bad. */
@@ -115,7 +111,13 @@ footer {
   padding: 12px;
   text-align: center;
 }
-.footer-text { color: var(--tnt-teal-color); }
+.footer-text {
+  color: var(--tnt-teal-color);
+  text-shadow: -1px -1px 0 black,
+               1px -1px 0 black,
+               -1px 1px 0 black,
+               1px 1px 0 black;
+}
 
 h1, h2, h3, h4, h5 {
   color: white;
@@ -189,11 +191,15 @@ p {
                1px 1px 0 var(--tnt-darkteal-color);
 }
 
-.reverbnation { text-decoration: none; }
-.reverbnation:hover { background-image: 'media/reverbnation-gray.svg' }
+.reverbnation:hover { background-image: url('media/reverbnation-gray.svg'); }
 
-.songkick { text-decoration: none; }
-.songkick:hover { background-image: 'media/songkick-gray.svg' }
+.songkick:hover { background-image: url('media/songkick-gray.svg'); }
+
+.svg-fix {
+  margin: 0px 2px;
+  position: relative;
+  bottom: 1px;
+}
 
 .tabcontent {
   animation: tntFade 1s;
