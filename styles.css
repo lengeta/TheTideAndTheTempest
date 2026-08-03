@@ -60,6 +60,8 @@ body {
   background-size: var(--s) var(--s);
   color: var(--tnt-white-color);
   font-family: Arial, Helvetica, sans-serif;  /* Not using IrisUPC, it looks bad. */
+  font-size: 14px;
+  line-height: 1.42857143;
   margin: auto;
   width: 100%;
 }
@@ -72,6 +74,8 @@ button {
   border-radius: 5px;
   color: var(--tnt-teal-color);
   font-family: tnt-myriad, myriad-pro, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
 }
 button:hover {
   color: var(--tnt-white-color);
@@ -88,14 +92,6 @@ button.active {
 content {
   display: grid;
   place-content: center;
-}
-content.div {
-  display: flex;
-  justify-content: center;
-}
-content.div.div {
-  display: flex;
-  justify-content: center;
 }
 
 footer {
@@ -121,11 +117,13 @@ footer {
   width: 100%;
 }
 .footer-content {
-  padding: 12px;
   text-align: center;
 }
 .footer-text {
   color: var(--tnt-teal-color);
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
   text-shadow: -1px -1px 0 black,
                1px -1px 0 black,
                -1px 1px 0 black,
@@ -167,6 +165,7 @@ header.sticky {
   z-index: 10;
 }
 div.header-buttons {
+  font-family: tnt-myriad, myriad-pro, sans-serif;
   position: relative;
   top: 5px;
   left: -30px;
@@ -202,6 +201,7 @@ li {
 
 p {
   color: white;
+  margin: 0 0 10px;
   text-shadow: -1px -1px 0 var(--tnt-darkteal-color),
                1px -1px 0 var(--tnt-darkteal-color),
                -1px 1px 0 var(--tnt-darkteal-color),
@@ -212,11 +212,7 @@ p {
 
 .songkick:hover { background-image: url('media/songkick-gray.svg'); }
 
-.svg-fix {
-  margin: 0px 2px;
-  position: relative;
-  bottom: 1px;
-}
+.svg-fix { margin: 0px 2px; }
 
 .tabcontent {
   animation: tntFade 1s;
@@ -224,9 +220,7 @@ p {
   padding: 20px 12px 0px;
 }
 
-.tablinks {
-  transition-duration: 0.3s;
-}
+.tablinks { transition-duration: 0.3s; }
 
 ul {
   list-style-type: none;
@@ -237,9 +231,7 @@ ul li {
   padding: 8px 16px;
   border-bottom: 1px solid var(--tnt-gray-color);
 }
-ul li:last-child {
-  border-bottom: none;
-}
+ul li:last-child { border-bottom: none; }
 
 .wavy {
   /* Pattern from https://css-generators.com/wavy-shapes/ */
@@ -256,55 +248,63 @@ ul li:last-child {
 * { box-sizing: border-box; }
 .slideshow {
   background-color: black;
+  margin: auto;
   max-width: 1000px; /* Images are 1200x700. */
   position: relative;
-  margin: auto;
 }
 .slide {
   animation: tntFade 1.5s;
   display: none;
 }
 .prev, .next {
+  align-items: center;
+  border-radius: 0 3px 3px 0;
+  color: rgba(255, 255, 255, 0);
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
+  display: grid;
   font-weight: bold;
   font-size: 18px;
+  padding: 10%;
+  position: absolute;
+  top: 0;
+  width: auto;
+  height: 100%;
   transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
   user-select: none;
+  vertical-align: middle;
 }
 .next {
+  --side: right;
   right: 0;
-  border-radius: 3px 0 0 3px;
 }
-.prev:hover, .next:hover { background-color: rgba(0, 0, 0, 0.8); }
+.prev {
+  --side: left;
+  left: 0;
+}
+.next:hover, .prev:hover {
+  animation: tntFade 1s;
+  background-image: linear-gradient(to var(--side), rgba(0, 0, 0, 0), rgba(0, 0, 0, .6), rgba(0, 0, 0, .8), rgba(0, 0, 0, .9));
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
 .text {
+  background-color: black;
   color: #f2f2f2;
   font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
   text-align: center;
+  width: 100%;
 }
 .dot {
   cursor: pointer;
   height: 15px;
   width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
+  margin: 5px 2px 0;
+  background-color: rgba(255, 255, 255, 0.25);
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
 }
-.active-slide, .dot:hover {
-  background-color: #717171;
-}
+.active-slide, .dot:hover { background-color: var(--tnt-white-color); }
 
 /* Band Member Cards */
 .column {
@@ -323,12 +323,18 @@ ul li:last-child {
 }
 .container {
   position: absolute;
-  bottom: 0;
   background: rgb(0, 0, 0); /* Fallback color */
   background: rgba(0, 0, 0, 0.75);
-  width: 100%;
+  bottom: 0;
   padding: 0 20px 20px 20px;
+  text-align: left;
+  text-shadow: -1px -1px 0 black,
+               1px -1px 0 black,
+               -1px 1px 0 black,
+               1px 1px 0 black;
+  width: 100%;
 }
+.container h2 { margin: 17.43px 0 0 0; }
 /* Clear floats */
 .container::after, .header-logo::after, .row::after {
   content: "";
