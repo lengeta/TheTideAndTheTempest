@@ -76,6 +76,7 @@ button {
   font-family: tnt-myriad, myriad-pro, sans-serif;
   font-size: 14px;
   line-height: 20px;
+  /* transform: rotate(-60deg); We'll want to do something like this in the future, with more buttons. */
 }
 button:hover {
   color: var(--tnt-white-color);
