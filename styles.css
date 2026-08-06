@@ -1,112 +1,344 @@
 /* styles.css */
-body {
-  font-family: Arial, Helvetica, sans-serif;  /* Not using IrisUPC, it looks bad. */
-  color: #ffffff;
-  background-color: #1e2b2d;
+
+:root {
+  --tnt-darkteal-color: #1e2b2d;  /* flyer's background */
+  --tnt-gray-color: #939598;  /* logo's triangle */
+  --tnt-teal-color: #288894;  /* logo's wave */
+  --tnt-white-color: #ffffff;  /* white, logo's foam, text */
 }
 
-div.sticky {
-  position: sticky;
-  top: 0;
-  background: #1e2b2d;
-  z-index: 10;
+@font-face {
+  font-family: 'tnt-myriad';
+  src: url('/media/MYRIADPRO-REGULAR.OTF');
 }
+@keyframes tntFade { from {opacity: 0;} to {opacity: 1;} }
 
 a:link {
-  color: #288894;
+  color: var(--tnt-teal-color);
   background-color: transparent;
   font-weight: bold;
   text-decoration: none;
+  text-shadow: -1px -1px 0 var(--tnt-grey-color),
+               1px -1px 0 var(--tnt-grey-color),
+               -1px 1px 0 var(--tnt-grey-color),
+               1px 1px 0 var(--tnt-grey-color);
 }
-
 a:visited {
-  color: #288894;
+  color: var(--tnt-teal-color);
   background-color: transparent;
   font-weight: bold;
   text-decoration: none;
 }
-
 a:hover {
-  color: #939598;
+  color: var(--tnt-gray-color);
+  background-color: transparent;
+  font-weight: bold;
+  text-decoration: underline;
+}
+a:active {
+  color: var(--tnt-gray-color);
   background-color: transparent;
   font-weight: bold;
   text-decoration: underline;
 }
 
-a:active {
-  color: #939598;
-  background-color: transparent;
-  font-weight: bold;
-  text-decoration: underline;
+.bandsintown:hover { background-image: url('media/bandsintown-gray.svg'); }
+
+body {
+  background-color: var(--tnt-darkteal-color); /* Fallback color */
+  /* Pattern from https://css-pattern.com/3d-wavy/ */
+  --s: 50px;
+  --c1: var(--tnt-darkteal-color);
+  --c2: #2c383a;
+  --_g: 
+     var(--c2) 6%  14%,var(--c1) 16% 24%,var(--c2) 26% 34%,var(--c1) 36% 44%,
+     var(--c2) 46% 54%,var(--c1) 56% 64%,var(--c2) 66% 74%,var(--c1) 76% 84%,var(--c2) 86% 94%;
+  background:
+    radial-gradient(100% 100% at 100% 0,var(--c1) 4%,var(--_g),#0008 96%,#0000),
+    radial-gradient(100% 100% at 0 100%,#0000, #0008 4%,var(--_g),var(--c1) 96%)
+    var(--c1);
+  background-size: var(--s) var(--s);
+  color: var(--tnt-white-color);
+  font-family: Arial, Helvetica, sans-serif;  /* Not using IrisUPC, it looks bad. */
+  font-size: 14px;
+  line-height: 1.42857143;
+  margin: auto;
+  width: 100%;
 }
+
+.box-shadow { box-shadow: 2px 2px 5px black; }
 
 button {
-  border: 1px solid #939598;
+  background-color: var(--tnt-darkteal-color);
+  border: 1px solid var(--tnt-gray-color);
   border-radius: 5px;
-  color: #939598;
-  background-color: #f1f1f1;
+  color: var(--tnt-teal-color);
+  font-family: tnt-myriad, myriad-pro, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  /* transform: rotate(-60deg); We'll want to do something like this in the future, with more buttons. */
 }
-
 button:hover {
-  color: #ffffff;
-  background-color: #939598;
+  color: var(--tnt-white-color);
+  background-color: var(--tnt-gray-color);
 }
-
 button.active {
-  color: #ffffff;
-  background-color: #288894;
+  color: var(--tnt-white-color);
+  background-color: var(--tnt-teal-color);
+  border: 1px solid var(--tnt-gray-color);
 }
 
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+.center-text { text-align: center; }
+
+content {
+  display: grid;
+  place-content: center;
 }
 
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
+footer {
+  display: flow-root;
+  background: black;
+  /* Pattern from https://css-pattern.com/overlapping-circles/ */
+  --s: 50px;
+  --c1: black;
+  --c2: #111111;
+
+  --_g: 
+     var(--c1) 0%  5% ,var(--c2) 6%  15%,var(--c1) 16% 25%,var(--c2) 26% 35%,var(--c1) 36% 45%,
+     var(--c2) 46% 55%,var(--c1) 56% 65%,var(--c2) 66% 75%,var(--c1) 76% 85%,var(--c2) 86% 95%,
+     #0000 96%;
+  background:
+    radial-gradient(50% 50% at 100% 0,var(--_g)),
+    radial-gradient(50% 50% at 0 100%,var(--_g)),
+    radial-gradient(50% 50%,var(--_g)),
+    radial-gradient(50% 50%,var(--_g)) calc(var(--s)/2) calc(var(--s)/2)
+    var(--c1);
+  background-size: var(--s) var(--s);
+  text-align: center;
+  width: 100%;
+}
+.footer-content {
+  text-align: center;
+}
+.footer-text {
+  color: var(--tnt-teal-color);
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  text-shadow: -1px -1px 0 black,
+               1px -1px 0 black,
+               -1px 1px 0 black,
+               1px 1px 0 black;
 }
 
-.tab button:hover {
-  background-color: #ddd;
+h1, h2, h3, h4, h5 {
+  color: white;
+  text-shadow: -1px -1px 0 var(--tnt-darkteal-color),
+               1px -1px 0 var(--tnt-darkteal-color),
+               -1px 1px 0 var(--tnt-darkteal-color),
+               1px 1px 0 var(--tnt-darkteal-color);
 }
 
-.tab button.active {
-  background-color: #ccc;
+/* Header */
+header {
+  background: var(--tnt-darkteal-color);
+  /* Pattern from https://css-pattern.com/overlapping-circles/ */
+  --s: 50px;
+  --c1: var(--tnt-darkteal-color);
+  --c2: #222222;
+
+  --_g: 
+     var(--c1) 0%  5% ,var(--c2) 6%  15%,var(--c1) 16% 25%,var(--c2) 26% 35%,var(--c1) 36% 45%,
+     var(--c2) 46% 55%,var(--c1) 56% 65%,var(--c2) 66% 75%,var(--c1) 76% 85%,var(--c2) 86% 95%,
+     #0000 96%;
+  background:
+    radial-gradient(50% 50% at 100% 0,var(--_g)),
+    radial-gradient(50% 50% at 0 100%,var(--_g)),
+    radial-gradient(50% 50%,var(--_g)),
+    radial-gradient(50% 50%,var(--_g)) calc(var(--s)/2) calc(var(--s)/2)
+    var(--c1);
+  background-size: var(--s) var(--s);
+  text-align: center;
 }
+header.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+div.header-buttons {
+  font-family: tnt-myriad, myriad-pro, sans-serif;
+  position: relative;
+  top: 5px;
+  left: -30px;
+}
+div.header-logo {
+  margin: auto;
+  width: 400px;
+}
+div.header-text {
+  color: var(--tnt-teal-color);
+  font-family: tnt-myriad, myriad-pro, sans-serif;
+  font-size: 21px;
+  text-shadow: -1px -1px 0 var(--tnt-darkteal-color),
+               1px -1px 0 var(--tnt-darkteal-color),
+               -1px 1px 0 var(--tnt-darkteal-color),
+               1px 1px 0 var(--tnt-darkteal-color);
+  position: relative;
+  top: 10px;
+  left: -28px;
+}
+div.header-text b {
+  color: var(--tnt-white-color);
+  font-size: 28px;
+  font-weight: normal;
+}
+
+li {
+  background-color: black;
+  max-width: 400px;
+  opacity: 65%;
+  text-align: left;
+}
+
+p {
+  color: white;
+  margin: 0 0 10px;
+  text-shadow: -1px -1px 0 var(--tnt-darkteal-color),
+               1px -1px 0 var(--tnt-darkteal-color),
+               -1px 1px 0 var(--tnt-darkteal-color),
+               1px 1px 0 var(--tnt-darkteal-color);
+}
+
+.reverbnation:hover { background-image: url('media/reverbnation-gray.svg'); }
+
+.songkick:hover { background-image: url('media/songkick-gray.svg'); }
+
+.svg-fix { margin: 0px 2px; }
 
 .tabcontent {
+  animation: tntFade 1s;
   display: none;
-  padding: 6px 12px;
-  -webkit-animation: fadeEffect 1s;
-  animation: fadeEffect 1s;
+  padding: 20px 12px 0px;
 }
 
-/* Fade in tabs */
-@-webkit-keyframes fadeEffect {
-  from {opacity: 0;}
-  to {opacity: 1;}
+.tablinks { transition-duration: 0.3s; }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
-@keyframes fadeEffect {
-  from {opacity: 0;}
-  to {opacity: 1;}
+ul li {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--tnt-gray-color);
+}
+ul li:last-child { border-bottom: none; }
+
+.wavy {
+  /* Pattern from https://css-generators.com/wavy-shapes/ */
+  margin: -10px 0 0 0;
+  mask: 
+    radial-gradient(67.08px at 50% 90px,#000 99%,#0000 101%) calc(50% - 60px) 0/120px 51% repeat-x,
+    radial-gradient(67.08px at 50% -60px,#0000 99%,#000 101%) 50% 30px/120px calc(51% - 30px) repeat-x,
+    radial-gradient(67.08px at 50% calc(100% - 90px),#000 99%,#0000 101%) 50% 100%/120px 51% repeat-x,
+    radial-gradient(67.08px at 50% calc(100% + 60px),#0000 99%,#000 101%) calc(50% - 60px) calc(100% - 30px)/120px calc(51% - 30px) repeat-x;
+  padding: 20px 0 60px 0;
 }
 
-/* DB */
+/* Band Slideshow */
+* { box-sizing: border-box; }
+.slideshow {
+  background-color: black;
+  margin: auto;
+  max-width: 1000px; /* Images are 1200x700. */
+  position: relative;
+}
+.slide {
+  animation: tntFade 1.5s;
+  display: none;
+}
+.prev, .next {
+  align-items: center;
+  border-radius: 0 3px 3px 0;
+  color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  display: grid;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10%;
+  position: absolute;
+  top: 0;
+  width: auto;
+  height: 100%;
+  transition: 0.6s ease;
+  user-select: none;
+  vertical-align: middle;
+}
+.next {
+  --side: right;
+  right: 0;
+}
+.prev {
+  --side: left;
+  left: 0;
+}
+.next:hover, .prev:hover {
+  animation: tntFade 1s;
+  background-image: linear-gradient(to var(--side), rgba(0, 0, 0, 0), rgba(0, 0, 0, .6), rgba(0, 0, 0, .8), rgba(0, 0, 0, .9));
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+.text {
+  background-color: black;
+  color: #f2f2f2;
+  font-size: 15px;
+  text-align: center;
+  width: 100%;
+}
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 5px 2px 0;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active-slide, .dot:hover { background-color: var(--tnt-white-color); }
+
+/* Band Member Cards */
+.column {
+  float: left;
+  width: 400px; /* Images are 400x700. */
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+.card {
+  box-shadow: 2px 2px 5px black;
+  position: relative;
+}
+.card-title {
+  color: var(--tnt-gray-color);
+  font-size: 18.72px;
+}
 .container {
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  position: absolute;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.75);
+  bottom: 0;
+  padding: 0 20px 20px 20px;
+  text-align: left;
+  text-shadow: -1px -1px 0 black,
+               1px -1px 0 black,
+               -1px 1px 0 black,
+               1px 1px 0 black;
+  width: 100%;
 }
-
-.data-item {
-  margin-bottom: 10px;
+.container h2 { margin: 17.43px 0 0 0; }
+/* Clear floats */
+.container::after, .header-logo::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
 }

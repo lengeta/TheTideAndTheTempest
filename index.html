@@ -4,13 +4,9 @@
     <title>The Tide & The Tempest</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/b9eed72134.js" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
   <script>
@@ -19,14 +15,14 @@
       z = document.getElementsByTagName("*");
       for (i = 0; i < z.length; i++) {
         elmnt = z[i];
-        file = elmnt.getAttribute("w3-include-html");
+        file = elmnt.getAttribute("include-html");
         if (file) {
           xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4) {
              if (this.status == 200) {elmnt.innerHTML = this.responseText;}
               if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-              elmnt.removeAttribute("w3-include-html");
+              elmnt.removeAttribute("include-html");
               includeHTML();
             }
           }      
@@ -41,65 +37,149 @@
   <body>
 
     <!-- Header - Moved out of header.html so sticky and defaultOpen work. -->
-    <!-- <div w3-include-html="html/header.html"></div> -->
-    <div class="sticky">
-      <!-- Logo -->
-      <div style="background-color:#1e2b2d;">
-        <img class="w3-bar-item" src="image/header_logo_350x89.png" alt="The Tide & The Tempest" style="width:350px;height:89px;margin:5px 5px;">
+    <!-- <div include-html="html/header.html"></div> -->
+    <header class="sticky box-shadow">
+      <div class="header-logo" width=450px>
+        <img src="media/TnT_Logo_1000x1000.png" height="100" width="100" alt="The Tide & The Tempest" style="float:left;">
+        <div class="header-text">THE <b>TIDE</b> & THE <b>TEMPEST</b></div>
+        <div class="header-buttons">
+          <!-- <script src="js/includeHtml.js"></script> -->
+          <!-- <script src="js/openContent.js"></script> -->
+          <button class="tablinks" onclick="openContent(event, 'latest')" id="defaultOpen">LASTEST</button>
+          <button class="tablinks" onclick="openContent(event, 'band')">BAND</button>
+          <button class="tablinks" onclick="openContent(event, 'music')">MUSIC</button>
+          <button class="tablinks" onclick="openContent(event, 'shows')">SHOWS</button>
+          <button class="tablinks" onclick="openContent(event, 'social')">SOCIAL</button>
+        </div>
       </div>
-      <!-- Navigation bar -->
-      <div style="position:absolute;bottom:16px;left:70px">
-        <script src="js/includeHtml.js"></script>
-        <script src="js/openContent.js"></script>
-        <button class="tablinks" onclick="openContent(event, 'latest')" id="defaultOpen">Latest</button>
-        <button class="tablinks" onclick="openContent(event, 'band')">Band</button>
-        <button class="tablinks" onclick="openContent(event, 'music')">Music</button>
-        <button class="tablinks" onclick="openContent(event, 'shows')">Shows</button>
-        <button class="tablinks" onclick="openContent(event, 'social')">Social</button>
-      </div>
-    </div>
+    </header>
 
     <!-- Content -->
-    <div id="latest" class="tabcontent">
-      <div w3-include-html="html/latest.html"></div>
-    </div>
-    <div id="band" class="tabcontent">
-      <div w3-include-html="html/band.html"></div>
-    </div>
-    <div id="music" class="tabcontent">
-      <div w3-include-html="html/music.html"></div>
-    </div>
-    <div id="shows" class="tabcontent">
-      <!-- Moved out of html/shows.html so the Songkick script works. -->
-      <!-- <div w3-include-html="html/shows.html"></div> -->
-      <a
-        href="https://www.songkick.com/artists/10409330-tide-and-the-tempest"
-        class="songkick-widget"
-        data-theme="dark"
-        data-track-button="off"
-        data-detect-style="off"
-        data-background-color="rgb(0,0,0,1)"
-        data-font-color="rgb(255,255,255,1)"
-        data-button-bg-color="rgb(255,255,255,1)"
-        data-button-text-color="rgb(0,0,0,1)"
-        data-locale="en"
-        data-other-artists="on"
-        data-share-button="off"
-        data-country-filter="off"
-        data-rsvp="off"
-        data-request-show="off"
-        data-past-events="off"
-        data-past-events-offtour="off"
-        data-remind-me="off"
-        style="display: none;">Upcoming Shows</a>
-      <script src='//widget-app.songkick.com/injector/10409330'></script>
-    </div>
-    <div id="social" class="tabcontent">
-      <div w3-include-html="html/social.html"></div>
-    </div>
+    <content>
+      <div id="latest" class="tabcontent" include-html="html/latest.html"></div>
+      <div id="band" class="tabcontent center-text">
+        <!--
+        Moved out of band.html to avoid this error I could not solve:
+        Uncaught TypeError: can't access property "style", slides[(slideIndex - 1)] is undefined
+        -->
+        <!-- <div include-html="html/band.html"></div> -->
+        <p><b>The Tide & The Tempest</b> is an emo, rock/post-hardcore/progressive band, from Salt Lake County, Utah.</p>
+
+        <!-- Band Slideshow -->
+        <div class="slideshow box-shadow">
+
+          <div class="slide tntFade active">
+            <img src="media/slide_1.png" style="width:100%;">
+            <div class="text">Recording <i>Stained Glass</i> with Metal-Jacob.</div>
+          </div>
+
+          <div class="slide tntFade">
+            <img src="media/slide_2.png" style="width:100%;">
+            <div class="text">Enjoying booze in Finland.</div>
+          </div>
+
+          <div class="slide tntFade">
+            <img src="media/slide_3.png" style="width:100%;">
+            <div class="text">Tino saw Emarosa and snagged some merch, no way!</div>
+          </div>
+
+          <div class="slide tntFade">
+            <img src="media/slide_4.png" style="width:100%;">
+            <div class="text">Enjoying <i>Chainfest 2021</i>.</div>
+          </div>
+
+          <a class="prev" onclick="plusSlide(-1)">&#10094;<br>prev</a>
+          <a class="next" onclick="plusSlide(1)">&#10095;<br>next</a>
+          <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+          </div>
+        </div>
+
+        <!-- Band Members -->
+        <div class="row">
+          <h1 style="padding:0 20px;">Band Members</h1>
+
+          <div class="column">
+            <div class="card">
+              <img src="media/bandmember_brandon.png" alt="Brandon" style="width:100%;">
+              <div class="container">
+                <h2>Brandon Frampton</h2>
+                <p class="card-title">Breath Box</p>
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <img src="media/bandmember_brett.png" alt="Brett" style="width:100%;">
+              <div class="container">
+                <h2>Brett Carroll</h2>
+                <p class="card-title">Six-String Slinger</p>
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <img src="media/bandmember_layne.png" alt="Layne" style="width:100%;">
+              <div class="container">
+                <h2>Layne Carroll</h2>
+                <p class="card-title">Contra Guitar</p>
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card">
+              <img src="media/bandmember_tino.png" alt="Tino" style="width:100%;">
+              <div class="container">
+                <h2>Tino Lazaro</h2>
+                <p class="card-title">Gut Buster</p>
+                <p></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- End of band. -->
+      </div>
+      <div id="music" class="tabcontent" include-html="html/music.html"></div>
+      <div id="shows" class="tabcontent">
+        <!-- Moved out of html/shows.html so the Songkick script works. -->
+        <!-- <div include-html="html/shows.html"></div> -->
+        <a
+          href="https://www.songkick.com/artists/10409330-tide-and-the-tempest"
+          class="songkick-widget"
+          data-theme="dark"
+          data-track-button="off"
+          data-detect-style="off"
+          data-background-color="rgb(0,0,0,1)"
+          data-font-color="rgb(255,255,255,1)"
+          data-button-bg-color="rgb(255,255,255,1)"
+          data-button-text-color="rgb(0,0,0,1)"
+          data-locale="en"
+          data-other-artists="on"
+          data-share-button="off"
+          data-country-filter="off"
+          data-rsvp="off"
+          data-request-show="off"
+          data-past-events="off"
+          data-past-events-offtour="off"
+          data-remind-me="off"
+          style="display: none;">Upcoming Shows</a>
+        <script src='//widget-app.songkick.com/injector/10409330'></script>
+      </div>
+      <div id="social" class="tabcontent" include-html="html/social.html"></div>
+    </content>
 
     <!-- Footer -->
-    <div w3-include-html="html/footer.html"></div>
+    <div include-html="html/footer.html"></div>
 
     <script>includeHTML();</script>
     <!-- Moved out of js/openContent.js so "Latest" loads on page open. -->
@@ -120,6 +200,34 @@
       }
 
       document.getElementById("defaultOpen").click();
+    </script>
+    <script>
+      let slideIndex = 1;
+      showSlide(slideIndex);
+
+      function plusSlide(n) {
+        showSlide(slideIndex += n);
+      }
+
+      function currentSlide(n) {
+        showSlide(slideIndex = n);
+      }
+
+      function showSlide(n) {
+        let i;
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active-slide", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active-slide";
+      }
     </script>
     
   </body>
