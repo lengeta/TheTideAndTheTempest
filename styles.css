@@ -196,6 +196,7 @@ div.header-text b {
 li {
   background-color: black;
   max-width: 400px;
+  min-width: 245px;
   opacity: 65%;
   text-align: left;
 }
